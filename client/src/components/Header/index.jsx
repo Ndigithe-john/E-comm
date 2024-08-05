@@ -10,7 +10,7 @@ import MegaMenu from '@components/Header/MegaMenu';
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className='fixed w-full border-b bg-white'>
+    <header className='fixed z-50 w-full border-b bg-white'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='flex h-14 w-full items-center justify-between sm:h-16'>
           <div className='flex flex-1 items-center justify-between gap-10'>

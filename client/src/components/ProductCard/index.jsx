@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import CardImage from './CardImage';
+import Rating from './Rating';
 const ProductCard = ({ product }) => {
   return (
     <a href={`/product/${product._id}`}>
@@ -13,6 +14,7 @@ const ProductCard = ({ product }) => {
           Ksh.{product.price}
         </p>
       </div>
+      <Rating value={product.rating} />
     </a>
   );
 };
