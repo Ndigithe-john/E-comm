@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '@components/Layout';
 import HomeScreen from '@screens/Home';
 import ErrorScreen from '@screens/Error';
+import ProductDetailsScreen from '@screens/ProductDetails';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomeScreen />,
+      },
+      {
+        path: '/product/:productID',
+        element: <ProductDetailsScreen />,
       },
     ],
   },
