@@ -1,14 +1,23 @@
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-
-import products from '@data/products';
 import Rating from '@components/ProductCard/Rating';
 import QuantitySelector from './QuantitySelector';
 
 const ProductDetailsScreen = () => {
   const { productID } = useParams();
-  const product = products.find((product) => product._id === productID);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await Axios.get(`/api/v1/products/${productID}`);
+      setProduct(data);
+    };
+    getProduct();
+  }, [productID]);
+  // const product = products.find((product) => product._id === productID);
 
   return (
     <div className='bg-white py-6 pb-16 sm:pb-24'>
@@ -54,7 +63,7 @@ const ProductDetailsScreen = () => {
             <div className='mt-1o'>
               <div className='mt-4 text-slate-400'>{product.description}</div>
             </div>
-            <QuantitySelector countInStock={product.countInStock}/>
+            <QuantitySelector countInStock={product.countInStock} />
             {/* Add to cart */}
             <button className='justify-content mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white transition-all hover:bg-indigo-700'>
               Add to cart
