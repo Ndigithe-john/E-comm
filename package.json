@@ -12,7 +12,8 @@
   },
   "imports": {
     "#config/*": "./server/config/*",
-    "#data/*": "./server/data/*"
+    "#data/*": "./server/data/*",
+    "#models/*": "./server/models/*"
   },
   "author": "John Ndigithe",
   "license": "ISC",
