@@ -5,6 +5,7 @@ import colors from "colors";
 
 import connectDB from "#config/db.config.js";
 import ProductRoutes from "#routes/product.route.js";
+import { errorHandler } from "#middlewares/error.middleware.js";
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 app.use("/api/v1/products", ProductRoutes);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(
