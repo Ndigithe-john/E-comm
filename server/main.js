@@ -13,7 +13,6 @@ const port = process.env.PORT || 4000;
 connectDB();
 
 const app = express();
-
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {

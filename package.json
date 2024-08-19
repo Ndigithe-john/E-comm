@@ -8,7 +8,9 @@
     "start": "node server/main.js",
     "server": "nodemon server/main.js",
     "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node server/seeder",
+    "data:destroy": "node server/seeder.js -d"
   },
   "imports": {
     "#config/*": "./server/config/*",
