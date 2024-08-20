@@ -20,7 +20,7 @@ const getProducts = async (req, res) => {
  */
 
 const getProductById = async (req, res) => {
-  const product = await ProductModel.findById(req, params.id);
+  const product = await ProductModel.findById(req.params.id);
   if (product) {
     res.json(product);
   } else {
