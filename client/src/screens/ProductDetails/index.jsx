@@ -1,12 +1,20 @@
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Rating from '@components/ProductCard/Rating';
 import QuantitySelector from './QuantitySelector';
 import { useGetProductDetailsQuery } from '@slices/productApiSlice';
+import { addToCart } from '@slices/cartSlice';
 
 const ProductDetailsScreen = () => {
   const { productID } = useParams();
+
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     data: product,
@@ -14,6 +22,11 @@ const ProductDetailsScreen = () => {
     isError,
     error,
   } = useGetProductDetailsQuery(productID);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate('/cart');
+  };
 
   // const [product, setProduct] = useState({});
 
@@ -75,9 +88,15 @@ const ProductDetailsScreen = () => {
               <div className='mt-1o'>
                 <div className='mt-4 text-slate-400'>{product.description}</div>
               </div>
-              <QuantitySelector countInStock={product.countInStock} />
+              <QuantitySelector
+                quantity={qty}
+                setQuantity={setQty}
+                countInStock={product.countInStock}
+              />
               {/* Add to cart */}
-              <button className='justify-content mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white transition-all hover:bg-indigo-700'>
+              <button
+                onClick={handleAddToCart}
+                className='justify-content mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white transition-all hover:bg-indigo-700'>
                 Add to cart
               </button>
               {/* content */}

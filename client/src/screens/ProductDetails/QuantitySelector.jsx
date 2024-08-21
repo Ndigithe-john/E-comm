@@ -1,10 +1,7 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
-const QuantitySelector = ({ countInStock }) => {
-  const [quantity, setQuantity] = useState(1);
-
+const QuantitySelector = ({ countInStock, quantity, setQuantity }) => {
   const handleIncrement = () => {
     setQuantity((prevQuantity) => Math.min(prevQuantity + 1, countInStock));
   };
@@ -38,6 +35,8 @@ const QuantitySelector = ({ countInStock }) => {
 };
 QuantitySelector.propTypes = {
   countInStock: PropTypes.number,
+  quantity: PropTypes.number,
+  setQuantity: PropTypes.func,
 };
 
 export default QuantitySelector;
