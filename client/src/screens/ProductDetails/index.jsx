@@ -8,6 +8,8 @@ import Rating from '@components/ProductCard/Rating';
 import QuantitySelector from './QuantitySelector';
 import { useGetProductDetailsQuery } from '@slices/productApiSlice';
 import { addToCart } from '@slices/cartSlice';
+import Loader from '@components/Loader';
+import Alert from '@components/Alert';
 
 const ProductDetailsScreen = () => {
   const { productID } = useParams();
@@ -49,9 +51,9 @@ const ProductDetailsScreen = () => {
         </Link>
 
         {isLoading ? (
-          <p>Loading...</p>
+          <Loader />
         ) : isError ? (
-          <p>{error.data.message || error.message}</p>
+          <Alert type='error'>{error.data.message || error.message}</Alert>
         ) : (
           <div className='lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8'>
             <div className='mt-8 lg:col-span-7 lg:mt-0'>
