@@ -5,7 +5,8 @@
       "@components/*": ["components/*"],
       "@screens/*": ["screens/*"],
       "@data/*": ["data/*"],
-      "@slices/*": ["slices/*"]
+      "@slices/*": ["slices/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }

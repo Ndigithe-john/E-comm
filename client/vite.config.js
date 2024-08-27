@@ -18,6 +18,7 @@ export default defineConfig({
       '@screens': ['/src/screens'],
       '@data': ['/src/data'],
       '@slices': ['/src/slices'],
+      '@utils': ['/src/utils'],
     },
   },
 });

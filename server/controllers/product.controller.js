@@ -14,7 +14,7 @@ const getProducts = async (req, res) => {
 
 /**
  *
- * @desc Fetch Sinle product
+ * @desc Fetch Single product
  * route Get /api/v1/product/id
  * @access public
  */
