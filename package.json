@@ -18,15 +18,18 @@
     "#models/*": "./server/models/*",
     "#routes/*": "./server/routes/*",
     "#middlewares/*": "./server/middlewares/*",
-    "#controllers/*": "./server/controllers/*"
+    "#controllers/*": "./server/controllers/*",
+    "#utils/*": "./server/utils/*"
   },
   "author": "John Ndigithe",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^5.0.0-beta.3",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.2",
     "morgan": "^1.10.0"
   },
