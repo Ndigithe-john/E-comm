@@ -15,6 +15,9 @@ const port = process.env.PORT || 4000;
 connectDB();
 
 const app = express();
+
+app.use(express.json()); //request body parsing
+app.use(express.urlencoded({ extended: true })); //Form data parsing
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
