@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import colors from "colors";
 
 import connectDB from "#config/db.config.js";
@@ -18,6 +19,7 @@ const app = express();
 
 app.use(express.json()); //request body parsing
 app.use(express.urlencoded({ extended: true })); //Form data parsing
+app.use(cookieParser()); //parse cookies
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {

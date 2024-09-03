@@ -11,13 +11,21 @@ import {
   updateUserProfile,
   logoutUser,
 } from "#controllers/user.controller.js";
+import { adminProtect, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(registerUser).get(getUsers);
+router.route("/").post(registerUser).get(protect, adminProtect, getUsers);
 router.post("/login", loginUser);
-router.post("/logout", logoutUser);
-router.route("/profile").get(getUserProfile).put(updateUserProfile);
-router.route("/:id").get(getUserById).delete(deleteUser).put(upadateUser);
+router.post("/logout", protect, logoutUser);
+router
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
+router
+  .route("/:id")
+  .get(protect, adminProtect, getUserById)
+  .delete(protect, adminProtect, deleteUser)
+  .put(protect, adminProtect, upadateUser);
 
 export default router;
