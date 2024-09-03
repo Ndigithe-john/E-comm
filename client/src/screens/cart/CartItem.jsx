@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ItemQuantityDropdown from './ItemQuantityDropdown';
 
-const CartItem = ({ product, index, handleAddToCart }) => {
+const CartItem = ({
+  product,
+  index,
+  handleAddToCart,
+  handleRemoveFromCart,
+}) => {
   return (
     <li className='flex py-6 sm:py-10'>
       <div className='flex-shrink-0'>
@@ -39,7 +44,9 @@ const CartItem = ({ product, index, handleAddToCart }) => {
               handleAddToCart={handleAddToCart}
             />
             <div className='absolute right-0 top-0'>
-              <button className='m-2 inline-flex p-2 text-slate-400 hover:text-slate-500'>
+              <button
+                onClick={() => handleRemoveFromCart(product._id)}
+                className='m-2 inline-flex p-2 text-slate-400 transition-all hover:scale-150 hover:text-red-500'>
                 <span className='sr-only'>Remove</span>{' '}
                 <XMarkIcon className='h-5 w-5' />
               </button>
@@ -63,5 +70,6 @@ CartItem.propTypes = {
   product: PropTypes.object,
   index: PropTypes.number,
   handleAddToCart: PropTypes.func,
+  handleRemoveFromCart: PropTypes.func,
 };
 export default CartItem;

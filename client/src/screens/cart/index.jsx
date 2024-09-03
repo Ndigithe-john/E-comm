@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { addToCart } from '@slices/cartSlice';
+import { addToCart, removeFromCart } from '@slices/cartSlice';
 import Alert from '@components/Alert';
 import CartItem from './CartItem';
 import Summary from './Summary';
@@ -15,6 +15,14 @@ const CartScreen = () => {
 
   const handleAddToCart = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    dispatch(removeFromCart(productId));
+  };
+
+  const handleCheckout = () => {
+    navigate('/login?redirect=/shipping');
   };
 
   return (
@@ -43,6 +51,7 @@ const CartScreen = () => {
                     product={product}
                     handleAddToCart={handleAddToCart}
                     index={index}
+                    handleRemoveFromCart={handleRemoveFromCart}
                   />
                 ))}
               </ul>
@@ -55,6 +64,7 @@ const CartScreen = () => {
               shippingPrice={cart.shippingPrice}
               taxPrice={cart.taxPrice}
               totalPrice={cart.totalPrice}
+              handleCheckout={handleCheckout}
             />
           </div>
         )}

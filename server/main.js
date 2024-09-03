@@ -4,7 +4,8 @@ import morgan from "morgan";
 import colors from "colors";
 
 import connectDB from "#config/db.config.js";
-import ProductRoutes from "#routes/product.route.js";
+import productRoutes from "#routes/product.route.js";
+import userRoutes from "#routes/user.route.js";
 import { errorHandler } from "#middlewares/error.middleware.js";
 
 dotenv.config();
@@ -19,7 +20,9 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-app.use("/api/v1/products", ProductRoutes);
+
+app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/users", userRoutes);
 
 app.use(errorHandler);
 
