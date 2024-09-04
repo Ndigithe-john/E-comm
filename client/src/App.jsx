@@ -13,6 +13,7 @@ import {
   ProductDetailsScreen,
   CartScreen,
   LoginScreen,
+  RegisterScreen,
 } from '@screens';
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginScreen />,
+      },
+      {
+        path: '/register',
+        element: <RegisterScreen />,
       },
     ],
   },
