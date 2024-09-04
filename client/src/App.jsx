@@ -16,6 +16,7 @@ import {
   RegisterScreen,
   ShippingScreen,
 } from '@screens';
+import PrivateRoute from '@components/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,16 @@ const router = createBrowserRouter([
       {
         path: '/shipping',
         element: <ShippingScreen />,
+      },
+      {
+        path: '',
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: '/shipping',
+            element: <ShippingScreen />,
+          },
+        ],
       },
     ],
   },
