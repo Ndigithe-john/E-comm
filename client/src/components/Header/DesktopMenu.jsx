@@ -3,18 +3,26 @@ import {
   ShoppingCartIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { logout } from '@slices/authSlice';
+import { useLogoutMutation } from '@slices/usersApiSlice';
 
 import MenuItem from './MenuItem';
+import { toast } from 'react-toastify';
 
 const DesktopMenu = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
 
   const [isOpen, setIsOpen] = useState(null);
   const menuRef = useRef();
+
+  const [logoutApiCall] = useLogoutMutation();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -29,8 +37,15 @@ const DesktopMenu = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    console.log('Logout');
+  const handleLogout = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.message);
+    }
   };
 
   return (
