@@ -5,3 +5,4 @@ export { default as ProductDetailsScreen } from './ProductDetails';
 export { default as LoginScreen } from './Login';
 export { default as RegisterScreen } from './Register';
 export { default as ShippingScreen } from './Shipping';
+export { default as PaymentScreen } from './Payment';
