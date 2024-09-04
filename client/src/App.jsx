@@ -10,6 +10,7 @@ import {
   ErrorScreen,
   ProductDetailsScreen,
   CartScreen,
+  LoginScreen,
 } from '@screens';
 
 const router = createBrowserRouter([
